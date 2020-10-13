@@ -1,10 +1,22 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.cat-facts-container {
+  margin-top: 2em;
+  width: 90%;
+  height: auto;
+  border-top: thick solid #8a2be2;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: row; 
+  justify-content: center;
+  padding-top: 1em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,4 +47,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.cat-app {
+  display: flex;
+  align-items: center; 
+
+}
+
+.cat-card-root {
+  width: 40%;
+  height: auto;
+  margin: .25em;
+  border-top: thick solid #8a2be2;
+  border-bottom: thick solid #8a2be2;
+  border-radius: 10px 10px 10px 10px;
+  padding: .25em;
+}
+
+.cat-card-img {
+  padding: 25px;
+  width: 50%; 
+  height: 50%; 
 }

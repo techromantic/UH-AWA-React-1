@@ -1,28 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import CatCard from './CatCard';
 function App() {
+
+  var catFacts = [
+    {
+      image: 'https://purr.objects-us-east-1.dream.io/i/cute-animals-13.JPG',
+      text: 'The technical term for a cat’s hairball is a bezoar.'
+    }, 
+    {
+      image: 'https://purr.objects-us-east-1.dream.io/i/5oY4g.jpg',
+      text: 'Female cats are typically right-pawed while male cats are typically left-pawed.'
+    }
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <MyComponent order="first"/>
-      </header>
+      <h3> Welcome to Cat Facts! </h3>
+      <div className="cat-facts-container">
+            {catFacts.map((fact) => <CatCard image={fact.image} fact={fact.text}/>)}
+      </div>
     </div>
   );
-}
-
-function MyComponent(props) {
-  var {order} = props; 
-  return (
-    <div>
-      <p> My {order} component </p>
-    </div>
-  )
 }
 
 export default App;

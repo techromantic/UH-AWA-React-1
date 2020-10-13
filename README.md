@@ -260,6 +260,164 @@ What if you created another prop for MyComponent? `<MyComponent another="prop"/>
 
 How could you get this to display in the MyComponent function? 
 
+## Exercise 5: Our AppliCATion 
+
+Okay that's great - now we have an idea of how parent communicates can communicate with children. 
+
+Now we can start building our CatFacts application. It would be cool if it displayed a card with an image of a cat and a cat fact. Should be easy as passing in two props, right? 
+
+But writing each component by hand seems really slow. There must be a better way to do this. 
+
+There totally is - let's declare an array in App.js to hold our CatFacts! 
+
+Now let's get rid of the MyComponent method and add in a separate component for our catFacts. 
+
+We'll need to reshape the entire application a bit. 
+
+Let's replace App.js' code with this. 
+
+```
+import React from 'react';
+import './App.css';
+import CatCard from './CatCard';
+function App() {
+
+  var catFacts = [
+    {
+      image: 'https://purr.objects-us-east-1.dream.io/i/cute-animals-13.JPG',
+      text: 'The technical term for a cat’s hairball is a bezoar.'
+    }, 
+    {
+      image: 'https://purr.objects-us-east-1.dream.io/i/5oY4g.jpg',
+      text: 'Female cats are typically right-pawed while male cats are typically left-pawed.'
+    }
+  ];
+
+  return (
+    <div className="App">
+      <h3> Welcome to Cat Facts! </h3>
+      <div className="cat-facts-container">
+            {catFacts.map((fact) => <CatCard image={fact.image} fact={fact.text}/>)}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+You'll see that we've added an array of objects for our catFacts. There's two properties, image & text. 
+
+We use a special syntax in JSX curly braces {} to evaluate a JavaScript expression during compilation. Within this expression, we take our catFacts array, and return JSX for each element in it, using the map method. Within the map method, there's a function that takes an individual element in the array (fact), and then returns the JSX, passing in props based off of that element. 
+
+Let's create the CatCard component. 
+
+Now lets create a new file in the src/ directory - called CatCard. (CatCard.js) - you'll see we're importing this in App.js 
+
+```
+import React, {useState, useEffect} from 'react';
+import './App.css';
+
+
+function CatCard ({fact, image}) {
+
+  return (
+    <div className="cat-card-root">
+      <img className="cat-card-img" src={image}/>
+      <p> {fact} </p>
+    </div>
+  )
+
+}
+
+export default CatCard; 
+
+```
+
+You can see that CatCard takes one property - this is the props object. We've used some special syntax to restructure our two props, fact & image so that we can use them in line. 
+
+Below we use some more curly braces {} to evaluate the value of the JavaScript variables. We use it to input the source of the image tag, and also to display the fact text inline within the p tag. 
+
+
+And now update App.css to style the app & cat cards a bit better, you'll see that both components import the App.css styling and use the 'className' attribute to use JSX styles.
+
+```
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cat-facts-container {
+  margin-top: 2em;
+  width: 90%;
+  height: auto;
+  border-top: thick solid #8a2be2;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: row; 
+  justify-content: center;
+  padding-top: 1em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cat-app {
+  display: flex;
+  align-items: center; 
+
+}
+
+.cat-card-root {
+  width: 40%;
+  height: auto;
+  margin: .25em;
+  border-top: thick solid #8a2be2;
+  border-bottom: thick solid #8a2be2;
+  border-radius: 10px 10px 10px 10px;
+  padding: .25em;
+}
+
+.cat-card-img {
+  padding: 25px;
+  width: 50%; 
+  height: 50%; 
+}
+```
+
+
 ### App.css
 
 This is our CSS for the entire project. Anytime we want to use a CSS class, we specify it using the 'className' attribute for the corresponding JSX tag.
