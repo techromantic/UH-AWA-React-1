@@ -80,7 +80,7 @@ There's also a few .css files which style the application.
 
 Don't worry about the other files for now. 
 
-### Exercise 1: Where It All Starts 
+## Exercise 1: Where It All Starts 
 
 Look at the code in index.js 
 
@@ -114,7 +114,7 @@ Open up /public/index.html and look around.
 
 Do you see where in the HTML our React application is being rendered? 
 
-### Exercise 2: JSX In Action  
+## Exercise 2: JSX In Action  
 
 Let's open up the React component App.js 
 
@@ -180,7 +180,7 @@ Try changing some of the text within the tags. Or adding another HTML tag like d
 
 What happens? 
 
-### Exercise 3: Creating Components 
+## Exercise 3: Creating Components 
 
 We've discussed before that a component is simply a function which returns some JSX. 
 
@@ -206,7 +206,7 @@ and this order property is referenced within the markup.
 
 Let's use this new component. 
 
-In the App function in App.js, let's add <MyComponent/> in place of the <a/> link! So the render method will look like this. 
+In the App function in App.js, let's add `<MyComponent/>` in place of the `<a/>` link! So the render method will look like this. 
 
 ```
 function App() {
@@ -226,8 +226,39 @@ function App() {
 
 Now run the app using our command. Whoa! Our component rendered. 
 
-Now try adding some markup in the component, or writing the component multiple times in the App() function. 
+Now try adding some markup in the component, or writing the component multiple times in the App() function. What happens? 
 
+## Exercise 4: Passing Props 
+
+Okay that's great and all, but what about the parameter for MyComponent. What is that? 
+
+That 'props' parameter is one of the key concepts in React. That data can be passed down as properties from parents to children. These props can only be passed down one way. 
+
+So in our component hierarchy its currently: 
+
+App.js --> MyComponent 
+
+Props are flowing from parent to child. 
+
+Let's test this out. 
+
+Edit MyComponent in App.js in the following manner. 
+
+`<MyComponent order="first"/>`
+
+We've explicitly declared a prop named order, and it has a string value of "first". 
+
+Save and see what happens to the component. 
+
+Our data is now passed through down to it - it should say 'My first component'. 
+
+Now try creating another `<MyComponent/>` and changing the value from 'first' to another string value. 
+
+What does this second component display? 
+
+What if you created another prop for MyComponent? `<MyComponent another="prop"/>` 
+
+How could you get this to display in the MyComponent function? 
 
 ### App.css
 
