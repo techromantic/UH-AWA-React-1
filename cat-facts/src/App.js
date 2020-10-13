@@ -10,17 +10,19 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <MyComponent/>
       </header>
     </div>
   );
+}
+
+function MyComponent(props) {
+  var {order} = props; 
+  return (
+    <div>
+      <p> My {order} component </p>
+    </div>
+  )
 }
 
 export default App;

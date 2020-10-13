@@ -180,6 +180,54 @@ Try changing some of the text within the tags. Or adding another HTML tag like d
 
 What happens? 
 
+### Exercise 3: Creating Components 
+
+We've discussed before that a component is simply a function which returns some JSX. 
+
+We should be able to write our own components now. 
+
+In App.js, after the App function, write the following code. 
+
+```
+  function MyComponent(props) {
+    var {order} = props; 
+    return (
+      <div>
+        <p> My {order} component </p>
+      </div>
+    )
+  }
+```
+
+This component named MyComponent contains a div container with some text in a p tag. 
+
+Its got one parameter as well 'props'. It looks like props is an object with an order property, 
+and this order property is referenced within the markup. 
+
+Let's use this new component. 
+
+In the App function in App.js, let's add <MyComponent/> in place of the <a/> link! So the render method will look like this. 
+
+```
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <MyComponent/>
+      </header>
+    </div>
+  );
+}
+```
+
+Now run the app using our command. Whoa! Our component rendered. 
+
+Now try adding some markup in the component, or writing the component multiple times in the App() function. 
+
 
 ### App.css
 
