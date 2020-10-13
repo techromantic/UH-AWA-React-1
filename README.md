@@ -25,18 +25,161 @@ Launch the [project](https://repl.it/@techromantic/DaringUsedModel-1#src/App.js)
 
 ## Our AppliCATion
 
-We have a whole universe of data services we can use to react apps. Check out the whole list [here](https://github.com/public-apis/public-apis)
-
 What we want to do is to create a simple application that lists the data out for us to view. I've created a meowing example that you can follow. It uses two data services - a cat facts service, and a cat pictures service. After getting a set of cat facts, it picks a random set, and then renders a cat card for each fact. Each cat card is given a cat fact. The cards are also responsible for retrieving a picture from the cat picture data service which it renders within it!
 
-# The Code Explained
+Click 'Run' at the top of the screen to launch the example. 
 
-The files in the project are simple.
+By the end of this lesson, you'll be able to create an application that displays data from any of these [sources](https://github.com/public-apis/public-apis)
 
-- App.css (contains styles)
+### Lesson 1: Create React App 
+
+We will now travel back in time so we can see how the application was built from scratch. 
+On the left-hand bar, find the 'Version Control' icon and click it. In the list of commits, scroll to the bottom and click 'Revert' - this will allow you to follow along with all the changes. 
+
+You should only be able to see the README.md file - if you haven't, then follow the instructions in 'Lets Get Started'. 
+
+You can either follow the instructions and create the application from scratch yourself, or jump to the next commits in the project to see what files changed. 
+
+Remember, if you jump to commits in the project, any code changes you've made may get lost. If you decide to follow along and build the application from scratch, then make new commits as needed. 
+
+Ask for help if you need it! 
+
+[Create React App]() is an easy way to create a new React application from the command line so you don't have to worry about installing the correct packages and configuring the project, it does it all for you. 
+
+Open up the integrated terminal and run the following commands (read the comments for explanations)
+
+```
+    # Tell our package runner to create a react app named "my-app" 
+    npx create-react-app my-app
+    # Move (cd) into the new directory "my-app" that was created,
+    cd my-app
+```
+
+You'll see the create-react-app tool create a bunch of files. Let's take a look at the project directory. 
+
+```
+    # Folder containing npm packages (react libraries + other stuff)
+    > node_modules 
+    # Folder containing the webpage (index.html) and other assets 
+    > public 
+    # Folder containing the React application code 
+    > src
+    # npm configuration 
+    - package.json 
+```
+
+We'll be doing most of our work out of the src folder so that'll be the most important. 
+
+Let's look at the files in there. 
+
+There's a few JavaScript files in here
+- index.js (Where it all starts)
 - App.js (main application)
-- CatCard.js (a container for our cat facts)
--
+
+There's also a few .css files which style the application. 
+
+Don't worry about the other files for now. 
+
+### Exercise 1: Where It All Starts 
+
+Look at the code in index.js 
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+```
+
+What is index.js doing? 
+- Its importing the React libraries & React code (App from './App') (the *.js extension is implied)
+- Its using ReactDOM.render method to render the application at the appropriate HTML node
+
+[ReactDOM](https://reactjs.org/docs/react-dom.html#render) is a package included with React that provides DOM specific methods. Its usually only used to attach your React application to an existing wqebpage. 
+
+The ReactDOM.render method has two parameters, first some tags that look like HTML or XML, and secondly the root element selected from the DOM. 
+
+This is the starting point of the application. By telling ReactDOM to render a react component (in this case App.js) in the container, we've created the root ReactComponent instance. 
+
+Open up /public/index.html and look around. 
+
+Do you see where in the HTML our React application is being rendered? 
+
+### Exercise 2: JSX In Action  
+
+Let's open up the React component App.js 
+
+Again we have our imports! The './' signifies we are importing the file in relation to the current file.
+```
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+```
+
+And here's the first React component you'll see. 
+
+```
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Its a simple function named App, that returns more of that HTML looking markup. 
+
+This is a React component at its simplest. A React component can be a simple function, and the only requirement is for it to return JSX. 
+
+What is JSX? 
+
+JSX is JavaScriptXML, its what gets rendered, and it allows us to write dynamic markup.
+
+You can write valid HTML in a JSX block and it will be rendered.
+
+This works because React at its core transforms JSX tags to its own representation of the DOM, which allows React to efficiently update the webpage itself. 
+
+Let's see how it look in the browser. 
+
+In your developer console run the following command. 
+
+` npm run start` 
+
+This tells npm to run our build scripts located in package.json  
+
+You'll see that you can visit the application in your browser, check it out. 
+
+Okay now, let's try editing the JSX within App.js 
+
+Try changing some of the text within the tags. Or adding another HTML tag like div and hit save.
+
+What happens? 
+
 
 ### App.css
 
